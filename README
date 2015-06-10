@@ -29,8 +29,8 @@
 approach to developing with the ncurses C library. 
 
   The initial library development was concerned primarily with wrapping 
-the ncurses and specifically the panel API within convenient objects for 
-simplified use in C++ applications and very few widgets have been created.
+ncurses and specifically the panel API within convenient objects for 
+simplified use in C++ applications.  Very few widgets have been created.
 The framework is focusing on application interaction and specialization 
 to simplify working with the terminal I/O where apps can easily design 
 their own widgets. 
