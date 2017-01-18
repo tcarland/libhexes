@@ -1,60 +1,47 @@
-/** $Id: hexes README 1.0 2011/05/04 18:56:00 tca $
-  *
-  * Copyright (c) 2011,2012 Timothy Charlton Arland 
-  * @author tca@charltontechnology.net
-  * 
-  * @section LICENSE
-  *
-  * libhexes is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU Lesser General Public License as 
-  * published by the Free Software Foundation, either version 3 of 
-  * the License, or (at your option) any later version.
-  *
-  * libhexes is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU Lesser General Public License for more details.
-  *
-  * You should have received a copy of the GNU Lesser General Public 
-  * License along with libhexes.  
-  * If not, see <http://www.gnu.org/licenses/>.
- **/
+libhexes
+=========
 
-/**
-  @mainpage   libhexes
-
-@section overview Overview:
-
-  'libhexes' is a C++ library that provides an object-oriented 
-approach to developing with the ncurses C library. 
-
-  The initial library development was concerned primarily with wrapping 
-ncurses and specifically the panel API within convenient objects for 
-simplified use in C++ applications.  Very few widgets have been created.
-The framework is focusing on application interaction and specialization 
-to simplify working with the terminal I/O where apps can easily design 
-their own widgets. 
-
-  At this time, there still needs to be work put into underlying 
-terminal I/O features and widgets for items like dropdown menus, radio 
-boxes, etc.
-
-   Hexes or 'libhexes' does rely and require both libncurses and the 
-libpanel curses extension. 
+ Copyright (c) 2011,2012 Timothy Charlton Arland 
+ @author tca@charltontechnology.net
+  
+#### LICENSE
+  
+  libhexes is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation, either version 3 of 
+  the License, or (at your option) any later version.
+ 
+  libhexes is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Lesser General Public License for more details.
+ 
+  You should have received a copy of the GNU Lesser General Public 
+  License along with libhexes.  
+  If not, see <http://www.gnu.org/licenses/>.
 
 
-@section docs Documentation:
-  The library API is available in html format generated via 'doxygen' 
-(required for this operation).
+#### Overview:
 
+***libhexes*** is a C++ library that provides an object-oriented approach to developing with the ncurses C library. 
+
+The initial library development was concerned primarily with wrapping ncurses and specifically the panel API within convenient objects for simplified use in C++ applications.  Very few widgets have been created.  The framework is focusing on application interaction and specialization to simplify working with the terminal I/O where apps can easily design their own widgets. 
+
+At this time, there still needs to be work put into underlying terminal I/O features and widgets for items like dropdown menus, radio boxes, etc.
+
+Hexes or *libhexes* does rely and require both libncurses and the libpanel curses extension. 
+
+
+#### Documentation:
+
+The library API is available in html format generated via 'doxygen' (required for this operation).
 Simply run 'make documentation' to generate the html docs.
 
 
-@section build Build:
+#### Build:
 
  Unix/Linux:
    Libhexes uses a custom build environment called 'tcamake' to control 
 dependencies.  Running 'make' should suffice on supported platforms.
 
-*/
 
