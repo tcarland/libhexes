@@ -1,15 +1,11 @@
 # Makefile for libhexes
 #
-ifdef TCAMAKE_PROJECT
-  TOPDIR = ../..
-else
-  TOPDIR = .
-endif 
+PDIR = ..
 
 NEED_NCURSES = 1
 
 
-ifdef TNMS_DEBUG
+ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
 endif
 OPT_FLAGS +=	-fPIC -O2
@@ -84,19 +80,19 @@ distclean: clean libclean test-clean doc-clean
 	@echo
 
 dist:
-ifdef TNMS_DISTDIR
-	@echo "running sync to $(TNMS_DISTDIR)/libhexes"
-	( $(RDIST) ./ $(TNMS_DISTDIR)/libhexes/ )
+ifdef TCAMAKE_DISTDIR
+	@echo "running sync to $(TCAMAKE_DISTDIR)/libhexes"
+	( $(RDIST) ./ $(TCAMAKE_DISTDIR)/libhexes/ )
 	@echo
 endif
 	
 install:
-ifdef TNMS_PREFIX
-	@echo "Installing libhexes to $(TNMS_PREFIX)/lib"
-	$(MKDIR) $(TNMS_PREFIX)/include/hexes
-	$(MKDIR) $(TNMS_PREFIX)/lib
-	$(RSYNC) --delete include/ $(TNMS_PREFIX)/include/hexes
-	$(RSYNC) lib/ $(TNMS_PREFIX)/lib/
+ifdef TCAMAKE_PREFIX
+	@echo "Installing libhexes to $(TCAMAKE_PREFIX)/lib"
+	$(MKDIR) $(TCAMAKE_PREFIX)/include/hexes
+	$(MKDIR) $(TCAMAKE_PREFIX)/lib
+	$(RSYNC) --delete include/ $(TCAMAKE_PREFIX)/include/hexes
+	$(RSYNC) lib/ $(TCAMAKE_PREFIX)/lib/
 	@echo	
 endif
 
