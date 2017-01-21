@@ -1,6 +1,6 @@
 # Makefile for libhexes
 #
-PDIR = ..
+TOPDIR = ..
 
 NEED_NCURSES = 1
 
@@ -81,7 +81,7 @@ distclean: clean libclean test-clean doc-clean
 
 dist:
 ifdef TCAMAKE_DISTDIR
-	@echo "running sync to $(TCAMAKE_DISTDIR)/libhexes"
+	@echo "Sync'ing to $(TCAMAKE_DISTDIR)/libhexes"
 	( $(RDIST) ./ $(TCAMAKE_DISTDIR)/libhexes/ )
 	@echo
 endif

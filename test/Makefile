@@ -1,4 +1,4 @@
-TOPDIR = ../../..
+TOPDIR = ../..
 
 NEED_NCURSES = 1
 NEED_HEXES = 1
