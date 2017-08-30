@@ -2,9 +2,9 @@ libhexes
 =========
 
  Copyright (c) 2011,2012 Timothy Charlton Arland 
- @author tca@charltontechnology.net
+ <tca@charltontechnology.net>
   
-####LICENSE
+#### LICENSE
   
   libhexes is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as 
@@ -21,33 +21,38 @@ libhexes
   If not, see <http://www.gnu.org/licenses/>.
 
 
-####Overview
+#### Overview
 
 ***libhexes*** is a C++ library that provides an object-oriented approach to developing 
 with the ncurses C library. 
 
 The initial library development was concerned primarily with wrapping ncurses and 
 specifically the panel API within convenient objects for simplified use in C++ applications.  
-Very few widgets have been created.  The framework is focusing on application interaction and 
-specialization to simplify working with the terminal I/O where apps can easily design their 
-own widgets. 
+Only a few widgets have been created so far. Focus has been on the framework stability and 
+ease for application interaction and specialization to simplify working with terminal I/O. 
 
-At this time, there still needs to be work put into underlying terminal I/O features and widgets 
-for items like dropdown menus, radio boxes, etc.
+At this time, there still needs to be work done in underlying terminal I/O features and 
+widgets development for items like dropdown menus, radio boxes, etc.
 
-Hexes or *libhexes* does rely and require both libncurses and the libpanel curses extension. 
+Hexes or *libhexes*  requires both libncurses and the libpanel curses extension. This should be inclusive with modern versions. 
 
 
-####Documentation
+#### Documentation
 
-The library API is available in html format generated via 'doxygen' (required for this operation).
+The library API is available in html format generated via 'doxygen'. 
 Simply run 'make documentation' to generate the html docs.
 
 
-####Build
+#### Build
 
  Unix/Linux:
    Libhexes uses a custom build environment called 'tcamake' to control 
 dependencies.  Running 'make' should suffice on supported platforms.
+
+   The ncurses headers are needed for building if not already installed with the 
+ncurses library. 
+
+ * Ubuntu: apt-get install lib64ncurses5-dev
+ * RHEL/Centos: ncurses-devel
 
 
