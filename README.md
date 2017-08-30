@@ -45,14 +45,14 @@ Simply run 'make documentation' to generate the html docs.
 
 #### Build
 
- Unix/Linux:
-   Libhexes uses a custom build environment called 'tcamake' to control 
-dependencies.  Running 'make' should suffice on supported platforms.
+***Unix/Linux***:  Libhexes uses a custom build environment called 'tcamake' to control 
+dependencies <https://github.com/tcarland/tcamake>.  Running 'make' should suffice on 
+supported platforms.
 
-   The ncurses headers are needed for building if not already installed with the 
+The ncurses headers are needed for building if not already installed with the 
 ncurses library. 
 
- * Ubuntu: apt-get install lib64ncurses5-dev
- * RHEL/Centos: ncurses-devel
+ * Ubuntu:      *apt-get install lib64ncurses5-dev*
+ * RHEL/Centos: *yum install ncurses-devel*
 
 
