@@ -57,4 +57,3 @@ class LineOutputHandler : public HexOutputInterface {
 } // namespace
 
 #endif // _HEXES_LINEOUTPUTHANDLER_H_
-

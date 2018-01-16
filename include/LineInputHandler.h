@@ -93,4 +93,3 @@ class LineInputHandler : public HexInputInterface {
 } // namespace
 
 #endif // _HEXES_LINEINPUTHANDLER_H_
-

@@ -33,7 +33,6 @@
 namespace hexes {
 
 
-
 /** Derived from HexPanel, the HexDialog class represents
   * a modal, pop-up dialog window.
  **/
@@ -77,7 +76,6 @@ class HexDialog : public HexPanel {
     bool         _dynsz;
     bool         _char;
     bool         _echo;
-
 };
 
 } // namespace 

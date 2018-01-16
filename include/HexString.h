@@ -85,6 +85,7 @@ class HexString {
     std::string&        str();
     const std::string&  str()    const;
 
+
     /* some obvious accessor's despite our attributes being public */
     int                 getColor()      const { return color; }
     int                 getAttributes() const { return attributes; }
@@ -93,7 +94,6 @@ class HexString {
 
 
   public:   /* static functions for manipulating strings */
-
 
     static bool         CharIsVisible ( char ch );
 
@@ -156,4 +156,3 @@ class HexString {
 } // namespace
 
 #endif // _HEXES_HEXSTRING_H_
-

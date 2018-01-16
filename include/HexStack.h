@@ -63,7 +63,6 @@ class HexStack : public HexPanel {
     HexPanelFactory *   _factory;
 
     bool                _winCmd;
-
 };
 
 

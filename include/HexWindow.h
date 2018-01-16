@@ -109,10 +109,8 @@ class HexWindow {
     int         _starty, _startx;
     bool        _border;
     bool        _wordwrap;
-
 };
 
 } // namespace
 
 #endif  // _HEXES_WINDOW_H_
-

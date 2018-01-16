@@ -70,7 +70,6 @@ class HexStringField : public HexString {
     char        _fld;
     size_t      _maxLen;
     size_t      _curLen;
-    
 };
 
 } // namespace

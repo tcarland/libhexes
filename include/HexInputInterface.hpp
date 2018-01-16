@@ -41,9 +41,7 @@ class HexInputInterface {
     virtual ~HexInputInterface() {}
 
     virtual int handleInput ( HexPanel * panel, int ch ) = 0;
-
 };
-
 
 } // namespace
 

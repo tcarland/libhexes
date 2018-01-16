@@ -70,7 +70,6 @@ typedef std::map<std::string, HexPanel*>  PanelMap;
 typedef std::list<std::string>            StringList;
 
 
-
 /** The HexApp class provides the entry point to a 'Hexes'
   * application wrapping the ncurses/panel library. It manages
   * the spawning and control of curses based windows/panels.
@@ -79,7 +78,6 @@ typedef std::list<std::string>            StringList;
   * of the application's respective panels.
  **/
 class HexApp {
-
 
   public:
 
@@ -160,9 +158,7 @@ class HexApp {
     bool                _hasColor;
 
     std::string         _errstr;
-
 };
-
 
 }  // namespace
 
