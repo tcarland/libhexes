@@ -32,7 +32,7 @@ namespace hexes {
 
 
 /**  Constructs a dialog panel with no default dimensions.
-  * The dialog will dynamically size itself based on the 
+  * The dialog will dynamically size itself based on the
   * contents.
  **/
 HexDialog::HexDialog ( const std::string & title,
@@ -48,8 +48,8 @@ HexDialog::HexDialog ( const std::string & title,
         this->addText(dialog);
 }
 
-/**  Constructs a dialog panel with fixed dimensions and 
-  * starting location. The dialog will NOT be dynamically 
+/**  Constructs a dialog panel with fixed dimensions and
+  * starting location. The dialog will NOT be dynamically
   * sized.
  **/
 HexDialog::HexDialog ( const std::string & title,
@@ -89,7 +89,7 @@ HexDialog::showDialog()
 
     ch = this->poll();
 
-    while ( ! cinput->isReady() ) 
+    while ( ! cinput->isReady() )
     {
         if ( _char )
             break;
@@ -153,7 +153,7 @@ HexDialog::getResult()
 
 /** By default, the dialog will exit on the first character
   * input. By setting this option to false, the dialog will
-  * persist for string input until a carriage return '<CR>' 
+  * persist for string input until a carriage return '<CR>'
   * is encountered, with the result stored in the dialog to
   * be accessed via getResult().
  **/
@@ -164,7 +164,7 @@ HexDialog::setCharOnly ( bool chin )
 }
 
 /**  Allows multi-character input to be echo'ed to the dialog.
-  *  Note that this will add a line of height to the dialog 
+  *  Note that this will add a line of height to the dialog
   *  if the dialog is dynamically sized.
  **/
 void
@@ -192,7 +192,7 @@ void
 HexDialog::initDialog()
 {
     int h, w, y, x;
-            
+
     h = this->getLineCount();
     w = this->getLongestLine();
 
@@ -202,7 +202,7 @@ HexDialog::initDialog()
         this->addText(hexstr);
         h += 1;
     }
-    
+
     if ( this->getDrawBorder() ) {
         h += 2;
         w += 2;
@@ -242,4 +242,3 @@ HexDialog::getLongestLine()
 
 
 // _HEXES_HEXDIALOG_CPP_
-

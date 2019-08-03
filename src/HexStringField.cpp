@@ -213,6 +213,18 @@ HexStringField::erase ( HexString::iterator start, HexString::iterator end )
 }
 
 
+void
+HexStringField::fieldName ( const std::string & name )
+{
+    _name.assign(name);
+}
+
+const std::string&
+HexStringField::fieldName() const
+{
+    return _name;
+}
+
 } // namespace
 
 // _HEXSTRINGFIELD_CPP_

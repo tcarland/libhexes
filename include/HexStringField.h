@@ -30,7 +30,7 @@
 namespace hexes {
 
 
-/**  A specialized HexString class that creates an input field for 
+/**  A specialized HexString class that creates an input field for
   *  a string and displays '_' as the field for the given length.
   *
   *  TODO:  Allow field to have title like USER: ______
@@ -64,10 +64,13 @@ class HexStringField : public HexString {
     virtual size_t      length() const;
     virtual size_t      max_length() const;
 
+    void                fieldName  ( const std::string & name );
+    const std::string&  fieldName() const;
 
   protected:
 
     char        _fld;
+    std::string _name;
     size_t      _maxLen;
     size_t      _curLen;
 };
@@ -75,4 +78,3 @@ class HexStringField : public HexString {
 } // namespace
 
 #endif  // _HEXSTRINGFIELD_H_
-
