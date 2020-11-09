@@ -1,8 +1,7 @@
 /**
   * @file HexPosition.hpp
   *
-  * Copyright (c) 2011 Timothy Charlton Arland
-  * @author tcarland@gmail.com
+  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *

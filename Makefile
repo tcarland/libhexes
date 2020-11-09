@@ -4,12 +4,11 @@ TOPDIR = ..
 
 NEED_NCURSES = 1
 
-
 ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
 endif
 OPT_FLAGS +=	-fPIC -O2
-CCSHARED +=	-Wl,-soname,$@
+CCSHARED  +=	-Wl,-soname,$@
 
 INCLUDES=       -Iinclude
 LIBS=		
@@ -23,16 +22,13 @@ OBJS=		src/HexApp.o src/HexPanel.o src/HexWindow.o \
 ALL_OBJS=	$(OBJS)
 
 
+include $(TOPDIR)/tcamake/tcamake_include
+
+
 all: lib test
 
-
-include $(TOPDIR)/tcamake/project_defs
-
-
 lib: arlib
-
 arlib: lib/libhexes.a
-
 solib: libhexes.so.0.2.1
 
 lib/libhexes.a: $(OBJS)
