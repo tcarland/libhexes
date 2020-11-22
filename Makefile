@@ -15,9 +15,9 @@ LIBS=
 LFLAGS=	
 
 OBJS=	src/HexApp.o src/HexPanel.o src/HexWindow.o \
-		src/HexString.o src/HexStringField.o \
-		src/HexDialog.o src/HexStack.o \
-		src/LineInputHandler.o src/LineOutputHandler.o
+	src/HexString.o src/HexStringField.o \
+	src/HexDialog.o src/HexStack.o \
+	src/LineInputHandler.o src/LineOutputHandler.o
 
 ALL_OBJS = $(OBJS)
 
@@ -29,14 +29,14 @@ all: lib test
 
 lib: arlib
 arlib: lib/libhexes.a
-solib: libhexes.so.0.2.1
+solib: libhexes.so.0.2.7
 
 lib/libhexes.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libhexes.so.0.2.1: $(OBJS)
+libhexes.so.0.2.7: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) $@ lib/libhexes.so )
 	$(make-so-rule)
