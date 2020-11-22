@@ -1,7 +1,7 @@
 /**
   * @file HexAttributes.h
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -83,4 +83,3 @@ enum HexInputKey {
 } // namespace
 
 #endif // _HEXES_HEXATTRIBUTES_HPP_
-
