@@ -8,7 +8,7 @@ OPT_FLAGS= 	-g
 endif
 
 LFLAGS=		
-INCLUDES=       -I.
+INCLUDES=   -I.
 
 BIN=		hextest
 OBJS=		hextest.o TestHexApp.o
@@ -17,9 +17,10 @@ ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
 
-all: hextest
+include $(TOPDIR)/tcamake/tcamake_include
 
-include $(TOPDIR)/tcamake/project_defs
+
+all: hextest
 
 
 hextest: $(OBJS)
