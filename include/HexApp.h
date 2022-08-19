@@ -1,7 +1,7 @@
 /**
   * @file HexApp.h
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -60,7 +60,7 @@ extern "C" {
 namespace hexes {
 
 
-#define LIBHEXES_VERSION  "v0.2.7"
+#define LIBHEXES_VERSION  "v0.2.8"
 
 class HexPanel;
 

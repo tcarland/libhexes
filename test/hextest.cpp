@@ -1,11 +1,7 @@
 #define _HEXTEST_CPP_
 
-//#include <iostream>
-
-
 #include "TestHexApp.h"
 using namespace hexes;
-
 
 
 int main ( int argc, char **argv )
@@ -15,7 +11,6 @@ int main ( int argc, char **argv )
     app->run();
 
     delete app;
-
     return 0;
 }
 

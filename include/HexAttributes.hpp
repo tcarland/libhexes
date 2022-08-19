@@ -1,7 +1,7 @@
 /**
   * @file HexAttributes.h
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *

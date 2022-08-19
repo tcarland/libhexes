@@ -1,7 +1,7 @@
 /**
   * @file HexString.cpp
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -24,7 +24,6 @@
 #define _HEXES_HEXSTRING_CPP_
 
 #include "HexString.h"
-
 
 namespace hexes {
 

@@ -1,10 +1,10 @@
 libhexes
 =========
 
- Copyright (c) 2011,2012 Timothy Charlton Arland 
+ Copyright (c) 2011-2022 Timothy Charlton Arland 
  <tca@charltontechnology.net>
   
-#### LICENSE
+## LICENSE
   
   libhexes is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as 
@@ -21,7 +21,7 @@ libhexes
   If not, see <http://www.gnu.org/licenses/>.
 
 
-#### Overview
+## Overview
 
 ***libhexes*** is a C++ library that provides an object-oriented 
 approach to developing with the ncurses C library. 
@@ -40,13 +40,13 @@ Hexes or *libhexes* requires both libncurses and the libpanel curses
 extension. This should be inclusive with modern packages of ncurses. 
 
 
-#### Documentation
+## Documentation
 
 The library API is available in html format generated via 'doxygen'. 
 Simply run 'make documentation' to generate the html docs.
 
 
-#### Build
+## Build
 
 ***Unix/Linux***:  Libhexes uses a custom build environment called 
 [tcamake](https://github.com/tcarland/tcamake) to control dependencies.

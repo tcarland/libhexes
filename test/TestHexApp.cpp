@@ -98,7 +98,6 @@ TestHexApp::bomb()
     hexstr.append(HexString::ToString(HEX_NORMAL));
     mainPanel->addText(hexstr);
 
-
     //mainPanel->setTextColor(HEX_BLUE_BLACK);
     mainPanel->addText(" ");
     mainPanel->addText(" ");

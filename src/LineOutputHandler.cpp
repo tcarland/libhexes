@@ -1,7 +1,7 @@
 /**
   * @file HexOutputHandler.cpp
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -29,11 +29,9 @@
 
 namespace hexes {
 
-
 LineOutputHandler::LineOutputHandler ( bool newline )
     : _newline(newline)
 {}
-
 
 int
 LineOutputHandler::handleOutput ( HexPanel * panel )
@@ -111,3 +109,4 @@ LineOutputHandler::setNewline ( bool newline )
 
 } // namespace
 
+// _HEXES_LINEOUTPUTHANDLER_CPP_

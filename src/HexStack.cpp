@@ -1,7 +1,7 @@
 /**
   * @file HexStack.cpp
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -25,9 +25,7 @@
 
 #include "HexStack.h"
 
-
 namespace hexes {
-
 
 
 HexStack::HexStack ( const std::string & title )
@@ -82,6 +80,5 @@ HexStack::setPanelFactory ( HexPanelFactory * factory )
 }
 
 }  // namespace
-
 
 // _HEXES_HEXSTACK_CPP_

@@ -1,7 +1,7 @@
 /**
   * @file HexPanel.cpp
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -823,4 +823,3 @@ HexPanel::initPanel()
 } // namespace
 
 // _HEXES_HEXPANEL_CPP_
-

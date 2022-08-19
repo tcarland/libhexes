@@ -33,7 +33,7 @@ namespace hexes {
 
 /** A specialized widget that is itself a HexPanel, but also 
   * can contain a number of additional HexPanel instances in 
-  * a stack under the current panel.
+  * a stack under the current panel. A stack of panes.
  **/
 class HexStack : public HexPanel {
 

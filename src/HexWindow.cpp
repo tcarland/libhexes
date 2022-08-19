@@ -1,7 +1,7 @@
 /**
   * @file HexWindow.cpp
   *
-  * Copyright (c) 2011-2020 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -392,8 +392,6 @@ HexWindow::LastIndexOf ( const std::string & str, const std::string & match, siz
     return ( (int) indx );
 }
 
-//----------------------------------------------------------------//
-
-
 } // namespace
 
+// _HEXES_HEXWINDOW_CPP_
