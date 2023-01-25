@@ -1,7 +1,7 @@
 /**
   * @file LineOutputHandler.h
   *
-  * Copyright (c) 2011-2022 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
