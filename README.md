@@ -32,12 +32,16 @@ simplified use in C++ applications. A few widgets have been created so
 far. Focus has been on the framework stability and ease for application 
 interaction and specialization to simplify working with terminal I/O. 
 
-At this time, there still needs to be work done in underlying terminal 
+Really this was a brief foray into writing such an API and was not 
+really developed further, despite my love of cool CLI's. It serves 
+as more of an example as a result.
+
+There would still need to be work done in underlying terminal 
 I/O features and widgets development for items like dropdown menus, 
 radio boxes, etc.
 
 Hexes or *libhexes* requires both libncurses and the libpanel curses 
-extension. This should be inclusive with modern packages of ncurses. 
+extension. This should be inclusive with any modern packages of ncurses. 
 
 
 ## Documentation
