@@ -1,5 +1,3 @@
-TOPDIR = ../..
-
 NEED_NCURSES = 1
 NEED_HEXES = 1
 
@@ -17,7 +15,11 @@ ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
 
-include $(TOPDIR)/tcamake/tcamake_include
+ifeq ($(TCAMAKE_HOME),)
+    TCAMAKE_HOME := $(realpath ../../tcamake)
+endif
+
+include $(TCAMAKE_HOME)/tcamake_include
 
 
 all: hextest

@@ -1,7 +1,5 @@
 # Makefile for libhexes
 #
-TOPDIR = ..
-
 NEED_NCURSES = 1
 
 ifdef TCAMAKE_DEBUG
@@ -14,29 +12,35 @@ INCLUDES   = -Iinclude
 LIBS=
 LFLAGS=	
 
-OBJS=	src/HexApp.o src/HexPanel.o src/HexWindow.o \
-	src/HexString.o src/HexStringField.o \
-	src/HexDialog.o src/HexStack.o \
-	src/LineInputHandler.o src/LineOutputHandler.o
+OBJS= src/HexApp.o src/HexPanel.o src/HexWindow.o \
+      src/HexString.o src/HexStringField.o \
+      src/HexDialog.o src/HexStack.o \
+      src/LineInputHandler.o src/LineOutputHandler.o
 
 ALL_OBJS = $(OBJS)
 
+# ----------------------------
 
-include $(TOPDIR)/tcamake/tcamake_include
+ifeq ($(TCAMAKE_HOME),)
+    TCAMAKE_HOME := $(realpath ../tcamake)
+endif
 
+include $(TCAMAKE_HOME)/tcamake_include
+
+# ----------------------------
 
 all: lib test
 
 lib: arlib
 arlib: lib/libhexes.a
-solib: libhexes.so.0.2.7
+solib: libhexes.so.0.3.0
 
 lib/libhexes.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libhexes.so.0.2.7: $(OBJS)
+libhexes.so.0.3.0: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) $@ lib/libhexes.so )
 	$(make-so-rule)
