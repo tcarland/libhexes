@@ -1,8 +1,7 @@
 libhexes
 =========
 
- Copyright (c) 2011 Timothy Charlton Arland 
- <tca@charltontechnology.net>
+ Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
   
 ## LICENSE
   
