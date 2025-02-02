@@ -23,7 +23,6 @@
  **/
 #define _HEXES_HEXPANEL_CPP_
 
-
 #include "HexPanel.h"
 #include "HexWindow.h"
 #include "HexOutputInterface.hpp"
@@ -817,8 +816,6 @@ HexPanel::initPanel()
 
     return;
 }
-
-//----------------------------------------------------------------//
 
 } // namespace
 

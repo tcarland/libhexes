@@ -29,7 +29,6 @@ namespace hexes {
 
 class HexPanel;
 
-
 /**  Defines the hexes interface for handling input from 
   *  a curses window. Input on a given panel will cause the 
   *  derived method to be called with the HexPanel that 
@@ -45,4 +44,3 @@ class HexInputInterface {
 } // namespace
 
 #endif // _HEXES_HEXINPUTINTERFACE_HPP_
-

@@ -598,8 +598,6 @@ HexApp::Version()
     return ver;
 }
 
-
 }  // namespace
 
 // HEXES_HEXAPP_CPP_
-

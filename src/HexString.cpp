@@ -25,8 +25,8 @@
 
 #include "HexString.h"
 
-namespace hexes {
 
+namespace hexes {
 
 HexString::HexString()     
     : color(0),
@@ -204,8 +204,6 @@ HexString::IndexOf ( const std::string & str, const std::string & match, size_t 
 
     return((int) indx);
 }
-
-//----------------------------------------------------------------//
 
 }  // namespace
 

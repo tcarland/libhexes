@@ -27,7 +27,6 @@
 
 namespace hexes {
 
-
 enum HexColorPair {
     HEX_DEFAULT_PAIR  = 0,
     HEX_RED_BLACK     = 1,

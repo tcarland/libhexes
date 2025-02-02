@@ -27,7 +27,6 @@
 
 namespace hexes {
 
-
 /**  Represents a pair of X, Y screen coordinates */
 typedef struct HexPosition {
     int  row;  // y
@@ -46,8 +45,6 @@ typedef struct HexPosition {
 
 } hexPos_t;
 
-
 } // namespace
 
 #endif  // _HEXES_HEXPOSITION_HPP_
-

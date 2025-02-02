@@ -239,5 +239,4 @@ HexDialog::getLongestLine()
 
 } // namespace
 
-
 // _HEXES_HEXDIALOG_CPP_

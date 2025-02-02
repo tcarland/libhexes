@@ -267,7 +267,4 @@ TestHexApp::run()
     return;
 }
 
-
 } // namespace
-
-

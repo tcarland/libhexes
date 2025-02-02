@@ -28,7 +28,6 @@
 
 namespace hexes {
 
-
 //TODO: need display field length vs. max accepted.
 //      scrolling within field
 
