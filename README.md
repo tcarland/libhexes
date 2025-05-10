@@ -1,7 +1,7 @@
 libhexes
 =========
 
- Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+ Copyright (c) 2011-2025 Timothy Charlton Arland <tcarland@gmail.com>
   
 ## LICENSE
   
@@ -60,5 +60,3 @@ ncurses library.
 
  * Ubuntu:      *apt-get install libncurses-dev*
  * RHEL/Centos: *yum install ncurses-devel*
-
-

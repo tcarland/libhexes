@@ -1,5 +1,3 @@
-# Makefile for libhexes
-#
 NEED_NCURSES = 1
 
 ifdef TCAMAKE_DEBUG
@@ -95,4 +93,3 @@ ifdef TCAMAKE_PREFIX
 	$(RSYNC) lib/ $(TCAMAKE_PREFIX)/lib/
 	@echo	
 endif
-
