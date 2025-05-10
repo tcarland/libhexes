@@ -31,5 +31,6 @@
 .project
 .cproject
 .settings
+compile_flags.txt
 
 hextest

@@ -23,7 +23,6 @@
  **/
 #define _HEXES_LINEINPUTHANDLER_CPP_
 
-
 #include "LineInputHandler.h"
 #include "HexApp.h"
 
@@ -223,7 +222,6 @@ LineInputHandler::keepHistory ( int lines )
 {
     _lines = lines;
 }
-
 
 }  // namespace
 

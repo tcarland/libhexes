@@ -88,7 +88,6 @@ class LineInputHandler : public HexInputInterface {
     size_t       _hindx;
 };
 
-    
 } // namespace
 
 #endif // _HEXES_LINEINPUTHANDLER_H_

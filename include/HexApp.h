@@ -59,8 +59,7 @@ extern "C" {
 
 namespace hexes {
 
-
-#define LIBHEXES_VERSION  "v0.2.8"
+#define LIBHEXES_VERSION  "v0.3.0"
 
 class HexPanel;
 
@@ -133,11 +132,9 @@ class HexApp {
 
   protected:
 
-
     static void         InitCurses ( bool termRaw, bool echo );
     static void         InitColors();
     static std::string  Version();
-
 
   private:
 

@@ -29,7 +29,6 @@ namespace hexes {
 
 class HexPanel;
 
-
 /**  Defines the hexes interface for handling output from a curses  
   *  window. Triggered by a draw event from HexApp, the derived 
   *  method is generally called for each HexPanel of the 
@@ -43,8 +42,6 @@ class HexOutputInterface {
     virtual int handleOutput ( HexPanel * panel ) = 0;
 };
 
-
 } // namespace 
 
 #endif // _HEXES_HEXOUTPUTINTERFACE_HPP_
-

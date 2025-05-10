@@ -8,7 +8,6 @@
 
 namespace hexes {
 
-
 class TestHexApp : public HexApp {
 
   public:
@@ -25,7 +24,6 @@ class TestHexApp : public HexApp {
     void help();
     void showIntro();
 
-
   private:
 
     HexPanel * mainPanel, *statPanel, *conPanel;
@@ -33,8 +31,6 @@ class TestHexApp : public HexApp {
     int _conheight, _titleheight, _statheight, _mainheight;
 };
 
-
 }  // namespace
 
 #endif // _HEXES_TESTHEXAPP_H_
-

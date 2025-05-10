@@ -38,4 +38,3 @@ int main()
     getch();
     endwin();
 }
-

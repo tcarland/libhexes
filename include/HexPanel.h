@@ -33,7 +33,6 @@
 
 namespace hexes {
 
-
 class HexApp;
 class HexPanel;
 class HexWindow;
@@ -201,11 +200,9 @@ class HexPanel {
 
     bool                scrollable()   const;
 
-
   protected:
 
     void                initPanel();
-
 
   private:
    
@@ -233,8 +230,6 @@ class HexPanel {
     bool                 _focus;
 };
 
-
 }  // namespace
 
 #endif // _HEXES_HEXPANEL_H_
-

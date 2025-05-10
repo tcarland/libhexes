@@ -24,7 +24,6 @@
 #ifndef _HEXES_HEXSTACK_H_
 #define _HEXES_HEXSTACK_H_
 
-
 #include "HexPanel.h"
 
 
@@ -54,7 +53,6 @@ class HexStack : public HexPanel {
 
     void setPanelFactory ( HexPanelFactory * factory );
 
-
   protected:
 
     PanelStack          _stack;
@@ -64,8 +62,6 @@ class HexStack : public HexPanel {
     bool                _winCmd;
 };
 
-
 }  // namespace
 
 #endif  // _HEXES_HEXSTACK_H_
-
