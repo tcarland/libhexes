@@ -23,6 +23,7 @@
  **/
 #define _HEXES_HEXPANEL_CPP_
 
+#include "HexApp.h"
 #include "HexPanel.h"
 #include "HexWindow.h"
 #include "HexOutputInterface.hpp"

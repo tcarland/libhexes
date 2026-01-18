@@ -23,6 +23,7 @@
  **/
 #define _HEXES_HEXWINDOW_CPP_
 
+#include "HexApp.h"
 #include "HexWindow.h"
 #include "HexPosition.hpp"
 
@@ -148,13 +149,13 @@ HexWindow::startX()
 int
 HexWindow::curY()
 {
-    return this->_win->_cury;
+    return getcury(this->_win);
 }
 
 int
 HexWindow::curX()
 {
-    return this->_win->_curx;
+    return getcurx(this->_win);
 }
 
 int
@@ -174,13 +175,13 @@ HexWindow::currentRow()
 int
 HexWindow::maxY()
 {
-    return this->_win->_maxy;
+    return getmaxy(this->_win);
 }
 
 int
 HexWindow::maxX()
 {
-    return this->_win->_maxx;
+    return getmaxx(this->_win);
 }
 
 int
@@ -268,7 +269,7 @@ HexWindow::print ( const std::string & str, bool wrap )
     if ( this->curY() > ht )
         return 0;
 
-    if ( _win->_curx == 0 && _border )
+    if ( getcurx(_win) == 0 && _border )
         ::wmove(_win, this->curY(), 1);
 
     if ( left <= 1 ) {

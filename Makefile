@@ -6,6 +6,8 @@ endif
 
 OPT_FLAGS += -fPIC -O2
 CCSHARED  += -Wl,-soname,$@
+CXXFLAGS   = -std=c++23
+
 INCLUDES   = -Iinclude
 LIBS=
 LFLAGS=	

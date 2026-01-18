@@ -24,6 +24,10 @@
 #ifndef _HEXES_HEXATTRIBUTES_HPP_
 #define _HEXES_HEXATTRIBUTES_HPP_
 
+extern "C" {
+#include <ncurses.h>
+}
+
 
 namespace hexes {
 

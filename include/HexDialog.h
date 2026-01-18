@@ -27,6 +27,7 @@
 #include <string>
 
 #include "HexPanel.h"
+#include "HexString.h"
 
 
 namespace hexes {

@@ -26,10 +26,14 @@
 
 #include <string>
 
-#include "HexApp.h"
+extern "C" {
+#include <ncurses.h>
+}
+
 
 namespace hexes {
 
+class HexPosition;
 
 /**  Provides an object-oriented interface to a ncurses window. This
   *  class is generally not used directly but is used by HexPanel 

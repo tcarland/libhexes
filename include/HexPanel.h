@@ -27,8 +27,16 @@
 #include <string>
 #include <list>
 
+extern "C" {
 #include <panel.h>
-#include <HexApp.h>
+}
+
+// Undefine ncurses macros that conflict with our method names
+#undef timeout
+
+#include "HexString.h"
+#include "HexPosition.hpp"
+#include "HexAttributes.hpp"
 
 
 namespace hexes {

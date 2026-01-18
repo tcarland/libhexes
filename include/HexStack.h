@@ -25,6 +25,7 @@
 #define _HEXES_HEXSTACK_H_
 
 #include "HexPanel.h"
+#include "HexApp.h"
 
 
 namespace hexes {

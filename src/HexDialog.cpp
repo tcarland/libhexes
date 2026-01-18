@@ -25,6 +25,7 @@
 
 #include "HexDialog.h"
 #include "HexStringField.h"
+#include "LineInputHandler.h"
 
 
 namespace hexes {
