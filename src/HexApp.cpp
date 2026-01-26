@@ -26,6 +26,7 @@
 #include <ncurses.h>
 
 #include "HexApp.h"
+#include "HexStack.h"
 
 
 namespace hexes {
@@ -185,12 +186,25 @@ HexApp::setFocus ( HexPanel * panel )
 {
     if ( panel == NULL )
         return;
-    if ( _curPanel )
-        _curPanel->unsetFocus();
 
-    panel->setFocus();
+    if ( _curPanel ) {
+        // If the currently focused panel is a stack, also drop focus on its active child.
+        if ( HexStack * curStack = dynamic_cast<HexStack*>(_curPanel) ) {
+            if ( curStack->currentPanel() )
+                curStack->currentPanel()->unsetFocus();
+        }
+        _curPanel->unsetFocus();
+    }
 
     _curPanel = panel;
+
+    // If focusing a stack, focus/top its active child panel instead of the stack panel itself.
+    if ( HexStack * stack = dynamic_cast<HexStack*>(panel) ) {
+        if ( stack->currentPanel() )
+            stack->currentPanel()->setFocus();
+    } else {
+        panel->setFocus();
+    }
 }
 
 /** Cycles panel focus to the next HexPanel in the window stack */

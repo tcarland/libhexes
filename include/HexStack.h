@@ -52,6 +52,30 @@ class HexStack : public HexPanel {
     virtual void resize  ( int height, int width );
 
 
+    /** Creates a new panel in the stack and makes it current.
+      * If title is empty, an auto title is assigned.
+      */
+    HexPanel* createPanel ( const std::string & title = "" );
+
+    /** Switches the current panel to the next/previous panel in the stack. */
+    HexPanel* nextPanel();
+    HexPanel* prevPanel();
+
+    /** Returns the current active panel (may be NULL if none exist). */
+    HexPanel* currentPanel() const;
+
+    /** Returns the number of panels in the stack. */
+    size_t panelCount() const;
+
+    /** Returns the panel at the given index or NULL if out of range. */
+    HexPanel* panelAt ( size_t index ) const;
+
+
+    /** Sets the current panel by index; returns false if out of range. */
+    bool setCurrentIndex ( size_t index );
+    size_t currentIndex() const;
+
+
     void setPanelFactory ( HexPanelFactory * factory );
 
   protected:
@@ -59,6 +83,9 @@ class HexStack : public HexPanel {
     PanelStack          _stack;
     HexPanel *          _curPanel;
     HexPanelFactory *   _factory;
+
+    size_t              _curIndex;
+    int                 _nextPanelId;
 
     bool                _winCmd;
 };
