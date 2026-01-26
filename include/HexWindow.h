@@ -1,7 +1,7 @@
 /**
   * @file HexWindow.h
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -26,10 +26,14 @@
 
 #include <string>
 
-#include "HexApp.h"
+extern "C" {
+#include <ncurses.h>
+}
+
 
 namespace hexes {
 
+class HexPosition;
 
 /**  Provides an object-oriented interface to a ncurses window. This
   *  class is generally not used directly but is used by HexPanel 

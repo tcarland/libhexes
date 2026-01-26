@@ -5,8 +5,8 @@ ifdef TNMS_DEBUG
 OPT_FLAGS= 	-g
 endif
 
-LFLAGS=		
-INCLUDES=   -I.
+LFLAGS=	
+INCLUDES=   -I. -I../include
 
 BIN=		hextest
 OBJS=		hextest.o TestHexApp.o
@@ -36,4 +36,3 @@ distclean: clean
 	$(RM) $(ALL_BINS)
 
 install:
-

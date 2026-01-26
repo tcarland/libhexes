@@ -1,7 +1,7 @@
 /**
   * @file HexPanel.h
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -27,8 +27,16 @@
 #include <string>
 #include <list>
 
+extern "C" {
 #include <panel.h>
-#include <HexApp.h>
+}
+
+// Undefine ncurses macros that conflict with our method names
+#undef timeout
+
+#include "HexString.h"
+#include "HexPosition.hpp"
+#include "HexAttributes.hpp"
 
 
 namespace hexes {

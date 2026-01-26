@@ -1,7 +1,7 @@
 /**
   * @file HexPanel.cpp
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -23,6 +23,7 @@
  **/
 #define _HEXES_HEXPANEL_CPP_
 
+#include "HexApp.h"
 #include "HexPanel.h"
 #include "HexWindow.h"
 #include "HexOutputInterface.hpp"

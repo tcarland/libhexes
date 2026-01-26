@@ -1,7 +1,7 @@
 /**
   * @file HexStack.h
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -25,6 +25,7 @@
 #define _HEXES_HEXSTACK_H_
 
 #include "HexPanel.h"
+#include "HexApp.h"
 
 
 namespace hexes {

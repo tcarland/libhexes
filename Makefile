@@ -6,6 +6,8 @@ endif
 
 OPT_FLAGS += -fPIC -O2
 CCSHARED  += -Wl,-soname,$@
+CXXFLAGS   = -std=c++23
+
 INCLUDES   = -Iinclude
 LIBS=
 LFLAGS=	
@@ -31,14 +33,14 @@ all: lib test
 
 lib: arlib
 arlib: lib/libhexes.a
-solib: libhexes.so.0.3.0
+solib: libhexes.so.0.4.0
 
 lib/libhexes.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libhexes.so.0.3.0: $(OBJS)
+libhexes.so.0.4.0: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) $@ lib/libhexes.so )
 	$(make-so-rule)

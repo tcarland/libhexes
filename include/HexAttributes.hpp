@@ -1,7 +1,7 @@
 /**
   * @file HexAttributes.h
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -23,6 +23,10 @@
  **/
 #ifndef _HEXES_HEXATTRIBUTES_HPP_
 #define _HEXES_HEXATTRIBUTES_HPP_
+
+extern "C" {
+#include <ncurses.h>
+}
 
 
 namespace hexes {

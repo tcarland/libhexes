@@ -1,7 +1,7 @@
 /**
   * @file HexDialog.h
   *
-  * Copyright (c) 2011 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2011-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -27,6 +27,7 @@
 #include <string>
 
 #include "HexPanel.h"
+#include "HexString.h"
 
 
 namespace hexes {
