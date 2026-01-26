@@ -75,6 +75,9 @@ class HexStack : public HexPanel {
     bool setCurrentIndex ( size_t index );
     size_t currentIndex() const;
 
+    /** Applies this stack's current text/border colors to all child panels. */
+    void syncPanelColors();
+
 
     void setPanelFactory ( HexPanelFactory * factory );
 

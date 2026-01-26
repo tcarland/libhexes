@@ -316,6 +316,13 @@ HexApp::addPanel ( HexPanel * panel )
         return false;
     
     panel->setPanelId(_pstack.size());
+    panel->setTextColor(_txtColor);
+    panel->setBorderColor(_bdrColor);
+    panel->setBorderActiveColor(_bfgColor);
+
+    if ( HexStack * stack = dynamic_cast<HexStack*>(panel) )
+        stack->syncPanelColors();
+
     _panels[panel->getPanelName()] = panel;
     _pstack.push_back(panel);
 

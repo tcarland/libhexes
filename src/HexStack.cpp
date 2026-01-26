@@ -138,9 +138,12 @@ HexStack::createPanel ( const std::string & title )
     panel->setBorderColor(this->getBorderColor());
     panel->setBorderActiveColor(this->getBorderActiveColor());
 
-    // Hide current before switching.
-    if ( _curPanel )
+    bool wasFocused = false;
+    if ( _curPanel ) {
+        wasFocused = _curPanel->hasFocus();
+        _curPanel->unsetFocus();
         _curPanel->hide();
+    }
 
     _stack.push_back(panel);
     _curPanel  = panel;
@@ -148,6 +151,11 @@ HexStack::createPanel ( const std::string & title )
     _nextPanelId++;
 
     _curPanel->show();
+
+    if ( wasFocused )
+        _curPanel->setFocus();
+    else
+        _curPanel->unsetFocus();
 
     return _curPanel;
 }
@@ -159,8 +167,12 @@ HexStack::nextPanel()
     if ( _stack.empty() )
         return NULL;
 
-    if ( _curPanel )
+    bool wasFocused = false;
+    if ( _curPanel ) {
+        wasFocused = _curPanel->hasFocus();
+        _curPanel->unsetFocus();
         _curPanel->hide();
+    }
 
     _curIndex++;
     if ( _curIndex >= _stack.size() )
@@ -169,6 +181,13 @@ HexStack::nextPanel()
     _curPanel = _stack.at(_curIndex);
     if ( _curPanel )
         _curPanel->show();
+
+    if ( _curPanel ) {
+        if ( wasFocused )
+            _curPanel->setFocus();
+        else
+            _curPanel->unsetFocus();
+    }
 
     return _curPanel;
 }
@@ -180,8 +199,12 @@ HexStack::prevPanel()
     if ( _stack.empty() )
         return NULL;
 
-    if ( _curPanel )
+    bool wasFocused = false;
+    if ( _curPanel ) {
+        wasFocused = _curPanel->hasFocus();
+        _curPanel->unsetFocus();
         _curPanel->hide();
+    }
 
     if ( _curIndex == 0 )
         _curIndex = _stack.size() - 1;
@@ -191,6 +214,13 @@ HexStack::prevPanel()
     _curPanel = _stack.at(_curIndex);
     if ( _curPanel )
         _curPanel->show();
+
+    if ( _curPanel ) {
+        if ( wasFocused )
+            _curPanel->setFocus();
+        else
+            _curPanel->unsetFocus();
+    }
 
     return _curPanel;
 }
@@ -225,13 +255,24 @@ HexStack::setCurrentIndex ( size_t index )
     if ( index >= _stack.size() )
         return false;
 
-    if ( _curPanel )
+    bool wasFocused = false;
+    if ( _curPanel ) {
+        wasFocused = _curPanel->hasFocus();
+        _curPanel->unsetFocus();
         _curPanel->hide();
+    }
 
     _curIndex = index;
     _curPanel = _stack.at(_curIndex);
     if ( _curPanel )
         _curPanel->show();
+
+    if ( _curPanel ) {
+        if ( wasFocused )
+            _curPanel->setFocus();
+        else
+            _curPanel->unsetFocus();
+    }
 
     return true;
 }
@@ -241,6 +282,20 @@ size_t
 HexStack::currentIndex() const
 {
     return _curIndex;
+}
+
+
+void
+HexStack::syncPanelColors()
+{
+    for ( PanelStack::iterator it = _stack.begin(); it != _stack.end(); ++it )
+    {
+        if ( *it == NULL )
+            continue;
+        (*it)->setTextColor(this->getTextColor());
+        (*it)->setBorderColor(this->getBorderColor());
+        (*it)->setBorderActiveColor(this->getBorderActiveColor());
+    }
 }
 
 void
