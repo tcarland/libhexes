@@ -40,12 +40,12 @@ bool HexApp::_NCURSES_INIT = false;
   * ncurses library.
  **/
 HexApp::HexApp()
-    : _curPanel(NULL),
-      _colorIndex(0),
-      _txtColor(0),
-      _bdrColor(0),
-      _bfgColor(0),
-      _echo(false)
+  : _curPanel(NULL),
+    _colorIndex(0),
+    _txtColor(0),
+    _bdrColor(0),
+    _bfgColor(0),
+    _echo(false)
 {
     this->InitCurses(false, _echo);
     _hasColor = ::has_colors();

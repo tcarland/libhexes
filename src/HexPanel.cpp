@@ -47,23 +47,23 @@ HexPanelFactory::operator() ( int panelId, const std::string & title )
 //----------------------------------------------------------------//
 
 HexPanel::HexPanel ( const std::string & title )
-    : _hwin(new HexWindow()),
-      _panel(NULL),
-      _output(new LineOutputHandler()),
-      _input(NULL),
-      _title(title),
-      _panelId(0),
-      _selected(0),
-      _maxLines(DEF_SCRLBK_SIZE),
-      _scrollTo(0),
-      _txtColor(0), 
-      _bdrColor(0), 
-      _bfgColor(0),
-      _bdrAttr(0),
-      _scrollable(false),
-      _drawBorder(true), 
-      _drawTitle(true),
-      _focus(false)
+  : _hwin(new HexWindow()),
+    _panel(NULL),
+    _output(new LineOutputHandler()),
+    _input(NULL),
+    _title(title),
+    _panelId(0),
+    _selected(0),
+    _maxLines(DEF_SCRLBK_SIZE),
+    _scrollTo(0),
+    _txtColor(0), 
+    _bdrColor(0), 
+    _bfgColor(0),
+    _bdrAttr(0),
+    _scrollable(false),
+    _drawBorder(true), 
+    _drawTitle(true),
+    _focus(false)
 {
     this->initPanel();
 }
@@ -71,24 +71,24 @@ HexPanel::HexPanel ( const std::string & title )
 HexPanel::HexPanel ( const std::string & title,
                      int   height, int   width,
                      int   starty, int   startx )
-    :
-      _hwin(new HexWindow(height, width, starty, startx, true)),
-      _panel(NULL),
-      _output(new LineOutputHandler()),
-      _input(NULL),
-      _title(title),
-      _panelId(0),
-      _selected(0),
-      _maxLines(DEF_SCRLBK_SIZE),
-      _scrollTo(0),
-      _txtColor(0), 
-      _bdrColor(0), 
-      _bfgColor(0),
-      _bdrAttr(0),
-      _scrollable(false),
-      _drawBorder(true), 
-      _drawTitle(true),
-      _focus(false)
+  :
+    _hwin(new HexWindow(height, width, starty, startx, true)),
+    _panel(NULL),
+    _output(new LineOutputHandler()),
+    _input(NULL),
+    _title(title),
+    _panelId(0),
+    _selected(0),
+    _maxLines(DEF_SCRLBK_SIZE),
+    _scrollTo(0),
+    _txtColor(0), 
+    _bdrColor(0), 
+    _bfgColor(0),
+    _bdrAttr(0),
+    _scrollable(false),
+    _drawBorder(true), 
+    _drawTitle(true),
+    _focus(false)
 {
     this->initPanel();
 }

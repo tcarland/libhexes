@@ -37,12 +37,12 @@ namespace hexes {
  **/
 HexDialog::HexDialog ( const std::string & title,
                        const HexString   & dialog )
-    : HexPanel(title, 0, 0, 0, 0),
-      _echochar(0),
-      _rescnt(0),
-      _dynsz(true),
-      _char(true),
-      _echo(false)
+  : HexPanel(title, 0, 0, 0, 0),
+    _echochar(0),
+    _rescnt(0),
+    _dynsz(true),
+    _char(true),
+    _echo(false)
 {
     if ( ! dialog.empty() )
         this->addText(dialog);
@@ -56,12 +56,12 @@ HexDialog::HexDialog ( const std::string & title,
                        const HexString   & dialog,
                        int   height, int   width,
                        int   starty, int   startx )
-    : HexPanel(title, height, width, starty, startx),
-      _echochar(0),
-      _rescnt(0),
-      _dynsz(false),
-      _char(true),
-      _echo(false)
+  : HexPanel(title, height, width, starty, startx),
+    _echochar(0),
+    _rescnt(0),
+    _dynsz(false),
+    _char(true),
+    _echo(false)
 {
     if ( ! dialog.empty() )
         this->addText(dialog);
