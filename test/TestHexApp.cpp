@@ -78,6 +78,7 @@ TestHexApp::help()
     mainPanel->addText("  /bomb  - blow stuff up");
     mainPanel->addText("  /clear - clears the main window");
     mainPanel->addText("  /new   - create a new main panel (HexStack)");
+    mainPanel->addText("  /kill  - remove the current main panel (HexStack)");
     mainPanel->addText("  /next  - switch to next main panel");
     mainPanel->addText("  /prev  - switch to previous main panel");
     mainPanel->addText("  /intro - show intro dialog window");
@@ -90,6 +91,7 @@ TestHexApp::help()
     mainPanel->addText(" ");
     mainPanel->addText(" When focus is on the main stack:");
     mainPanel->addText("     + 'n'      = create a new panel");
+    mainPanel->addText("     + 'k'      = kill the current panel");
     mainPanel->addText("     + LEFT/RIGHT (or TAB) = switch panels");
     mainPanel->addText(" ");
     mainPanel->addText(" UP/DOWN Arrows = cycle command history or scrolls the window depending on the window focus");
@@ -281,6 +283,11 @@ TestHexApp::run()
                             mainPanel->addText("-- created new panel --");
                             refreshMainTitles();
                         }
+                    } else if ( ch == 'k' ) {
+                        if ( mainStack->killCurrentPanel() ) {
+                            mainPanel = mainStack->currentPanel();
+                            refreshMainTitles();
+                        }
                     } else if ( ch == KEY_RIGHT || ch == '\t' ) {
                         mainPanel = mainStack->nextPanel();
                         refreshMainTitles();
@@ -328,6 +335,13 @@ TestHexApp::run()
             if ( mainStack ) {
                 mainPanel = mainStack->prevPanel();
                 refreshMainTitles();
+            }
+        } else if ( cmd.compare("/kill") == 0 ) {
+            if ( mainStack ) {
+                if ( mainStack->killCurrentPanel() ) {
+                    mainPanel = mainStack->currentPanel();
+                    refreshMainTitles();
+                }
             }
         } else if ( cmd.compare("/bomb") == 0 ) {
             this->bomb();

@@ -61,6 +61,11 @@ class HexStack : public HexPanel {
     HexPanel* nextPanel();
     HexPanel* prevPanel();
 
+    /** Destroys the current panel in the stack and switches to another.
+      * If the stack has only one panel, it will be replaced with a fresh panel.
+      */
+    bool killCurrentPanel();
+
     /** Returns the current active panel (may be NULL if none exist). */
     HexPanel* currentPanel() const;
 

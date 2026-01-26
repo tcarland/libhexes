@@ -161,6 +161,60 @@ HexStack::createPanel ( const std::string & title )
 }
 
 
+bool
+HexStack::killCurrentPanel()
+{
+    if ( _stack.empty() || _curPanel == NULL )
+        return false;
+
+    bool wasFocused = _curPanel->hasFocus();
+    size_t oldIndex = _curIndex;
+
+    _curPanel->unsetFocus();
+    _curPanel->hide();
+
+    // Remove and destroy current panel.
+    HexPanel * victim = _curPanel;
+    _stack.erase(_stack.begin() + (long) _curIndex);
+    delete victim;
+
+    // Ensure at least one panel exists.
+    if ( _stack.empty() ) {
+        this->createPanel();
+        if ( _curPanel ) {
+            if ( wasFocused )
+                _curPanel->setFocus();
+            else
+                _curPanel->unsetFocus();
+        }
+        return true;
+    }
+
+    // Clamp new index.
+    if ( oldIndex >= _stack.size() )
+        _curIndex = _stack.size() - 1;
+    else
+        _curIndex = oldIndex;
+
+    // Re-index panel IDs for focus cycling/debug.
+    for ( size_t i = 0; i < _stack.size(); ++i ) {
+        if ( _stack.at(i) )
+            _stack.at(i)->setPanelId(i);
+    }
+
+    _curPanel = _stack.at(_curIndex);
+    if ( _curPanel ) {
+        _curPanel->show();
+        if ( wasFocused )
+            _curPanel->setFocus();
+        else
+            _curPanel->unsetFocus();
+    }
+
+    return true;
+}
+
+
 HexPanel*
 HexStack::nextPanel()
 {
