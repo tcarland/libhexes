@@ -31,12 +31,12 @@ namespace hexes {
 
 
 LineInputHandler::LineInputHandler ( int maxlength )
-    : _maxlen(maxlength),
-      _isReady(false),
-      _echo(true),
-      _parse(true),
-      _lines(HEXES_DEFBUFLEN),
-      _hindx(0)
+  : _maxlen(maxlength),
+    _isReady(false),
+    _echo(true),
+    _parse(true),
+    _lines(HEXES_DEFBUFLEN),
+    _hindx(0)
 {}
 
 

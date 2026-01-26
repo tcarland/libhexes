@@ -8,6 +8,8 @@
 
 namespace hexes {
 
+class HexStack;
+
 class TestHexApp : public HexApp {
 
   public:
@@ -26,6 +28,7 @@ class TestHexApp : public HexApp {
 
   private:
 
+    HexStack * mainStack;
     HexPanel * mainPanel, *statPanel, *conPanel;
 
     int _conheight, _titleheight, _statheight, _mainheight;

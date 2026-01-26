@@ -32,25 +32,25 @@ namespace hexes {
 
 
 HexWindow::HexWindow()
-    : _win(NULL),
-      _height(5),
-      _width(10),
-      _starty(0),
-      _startx(0),
-      _border(false),
-      _wordwrap(false)
+  : _win(NULL),
+    _height(5),
+    _width(10),
+    _starty(0),
+    _startx(0),
+    _border(false),
+    _wordwrap(false)
 {
     _win = HexWindow::CreateWindow(_height, _width, _starty, _startx);
 }
 
 HexWindow::HexWindow ( int height, int width, bool border )
-    : _win(NULL),
-      _height(height), 
-      _width(width),
-      _starty(0),
-      _startx(0),
-      _border(border),
-      _wordwrap(false)
+  : _win(NULL),
+    _height(height), 
+    _width(width),
+    _starty(0),
+    _startx(0),
+    _border(border),
+    _wordwrap(false)
 {
     _win = HexWindow::CreateWindow(_height, _width, _starty, _startx);
 }
@@ -58,13 +58,13 @@ HexWindow::HexWindow ( int height, int width, bool border )
 HexWindow::HexWindow ( int height, int width,
                        int starty, int startx,
                        bool border )
-    : _win(NULL),
-      _height(height), 
-      _width(width),
-      _starty(starty), 
-      _startx(startx),
-      _border(border),
-      _wordwrap(false)
+  : _win(NULL),
+    _height(height), 
+    _width(width),
+    _starty(starty), 
+    _startx(startx),
+    _border(border),
+    _wordwrap(false)
 {
     _win = HexWindow::CreateWindow(_height, _width, _starty, _startx);
 }

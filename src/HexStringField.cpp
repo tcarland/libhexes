@@ -33,18 +33,18 @@ namespace hexes {
 
 
 HexStringField::HexStringField ( size_t max_len )
-    : _fld('_'),
-      _maxLen(max_len),
-      _curLen(0)
+  : _fld('_'),
+    _maxLen(max_len),
+    _curLen(0)
 {
     _str.append(max_len, _fld);
 }
 
 
 HexStringField::HexStringField ( const HexString & str, size_t max_len )
-    : HexString(str),
-      _fld('_'),
-      _maxLen(max_len)
+  : HexString(str),
+    _fld('_'),
+    _maxLen(max_len)
 {
     size_t   fill = 0;
     if ( str.length() > max_len )
@@ -58,8 +58,8 @@ HexStringField::HexStringField ( const HexString & str, size_t max_len )
 
 
 HexStringField::HexStringField ( const std::string & str, size_t max_len )
-    : HexString(str),
-      _maxLen(max_len)
+  : HexString(str),
+    _maxLen(max_len)
 {
     size_t   fill = 0;
     if ( str.length() > max_len )

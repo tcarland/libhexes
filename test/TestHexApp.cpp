@@ -8,6 +8,7 @@
 #include "TestHexApp.h"
 
 #include "HexPanel.h"
+#include "HexStack.h"
 #include "HexDialog.h"
 #include "LineInputHandler.h"
 #include "LineOutputHandler.h"
@@ -15,13 +16,14 @@
 namespace hexes {
 
 TestHexApp::TestHexApp()
-    : mainPanel(NULL),
-      statPanel(NULL),
-      conPanel(NULL),
-      _conheight(3),
-      _titleheight(1),
-      _statheight(0),
-      _mainheight(0)
+  : mainStack(NULL),
+    mainPanel(NULL),
+    statPanel(NULL),
+    conPanel(NULL),
+    _conheight(3),
+    _titleheight(1),
+    _statheight(0),
+    _mainheight(0)
 {}
 
 void
@@ -38,7 +40,8 @@ TestHexApp::resize()
     statstarty  = ht - _statheight - _conheight;
     constarty   = ht - _conheight;
 
-    mainPanel->resize(_mainheight, wd);
+    if ( mainStack )
+        mainStack->resize(_mainheight, wd);
     statPanel->resize(_statheight, wd);
     conPanel->resize(_conheight, wd);
     statPanel->erase();
@@ -74,13 +77,22 @@ TestHexApp::help()
     mainPanel->addText("  /help  - displays this help");
     mainPanel->addText("  /bomb  - blow stuff up");
     mainPanel->addText("  /clear - clears the main window");
+    mainPanel->addText("  /new   - create a new main panel (HexStack)");
+    mainPanel->addText("  /kill  - remove the current main panel (HexStack)");
+    mainPanel->addText("  /next  - switch to next main panel");
+    mainPanel->addText("  /prev  - switch to previous main panel");
     mainPanel->addText("  /intro - show intro dialog window");
     mainPanel->addText("  /echo  - toggle the display of character input");
     mainPanel->addText("  /quit  - exits the app.");
     mainPanel->addText(" ");
     mainPanel->addText(" <CTRL>-w : performs a window command");
-    mainPanel->addText("     + 'n' = switch focus to the next window");
-    mainPanel->addText("     + 'p' = switch focus to the previous window");
+    mainPanel->addText("     + UP   = switch focus to the previous window");
+    mainPanel->addText("     + DOWN = switch focus to the next window");
+    mainPanel->addText(" ");
+    mainPanel->addText(" When focus is on the main stack:");
+    mainPanel->addText("     + 'n'      = create a new panel");
+    mainPanel->addText("     + 'k'      = kill the current panel");
+    mainPanel->addText("     + LEFT/RIGHT (or TAB) = switch panels");
     mainPanel->addText(" ");
     mainPanel->addText(" UP/DOWN Arrows = cycle command history or scrolls the window depending on the window focus");
     mainPanel->addText(" ");
@@ -158,13 +170,17 @@ TestHexApp::run()
     this->setBorderColor(HEX_MAGENTA);
     this->setBorderActiveColor(HEX_GREEN);
 
-    mainPanel = this->createPanel("main", LINES-statheight-1-conheight, COLS, 1, 0);
+    mainStack = new HexStack("main-stack", LINES-statheight-1-conheight, COLS, 1, 0);
+    this->addPanel(mainStack);
+    mainPanel = mainStack->currentPanel();
     statPanel = this->createPanel("status", statheight, COLS, LINES-statheight-conheight, 0);
     conPanel  = this->createPanel("console", conheight, COLS, LINES-conheight, 0);
 
-    mainPanel->setWindowTitle(" Main ", HEX_GREEN);
-    mainPanel->enableScroll(true);
-    mainPanel->setMaxLines(500);
+    if ( mainPanel ) {
+        mainPanel->setWindowTitle(" Main [1] ", HEX_GREEN);
+        mainPanel->enableScroll(true);
+        mainPanel->setMaxLines(500);
+    }
 
     statPanel->setWindowTitle(" Status ", HEX_GREEN);
     statPanel->enableScroll(true);
@@ -190,6 +206,23 @@ TestHexApp::run()
     this->draw();
     this->showIntro();
 
+    auto refreshMainTitles = [&]() {
+        if ( ! mainStack )
+            return;
+        size_t total = mainStack->panelCount();
+        for ( size_t i = 0; i < total; ++i )
+        {
+            HexPanel * p = mainStack->panelAt(i);
+            if ( ! p )
+                continue;
+            std::ostringstream t;
+            t << " Main [" << (i + 1) << "/" << total << "] ";
+            p->setWindowTitle(t.str(), HEX_GREEN);
+        }
+    };
+
+    refreshMainTitles();
+
     HexPanel * cur = this->getPanel();
 
     while ( ! alarm ) 
@@ -205,13 +238,17 @@ TestHexApp::run()
             std::ostringstream  ostr;
             ostr << "ch = " << ch << "   '" << (char) ch << "'";
 
+            bool consumed = false;
+
             if ( wcmd ) {              // window command reset
                 wcmd = false;
                 cinput->setParse(true);
                 ostr << " <window command>";
-                if ( ch == 'n' )
+                consumed = true;
+
+                if ( ch == KEY_DOWN )
                     cur = this->setFocusNext();
-                else if ( ch == 'p' )
+                else if ( ch == KEY_UP )
                     cur = this->setFocusPrev();
             }
 
@@ -220,11 +257,44 @@ TestHexApp::run()
                 cinput->setParse(false);
             }
 
+            if ( consumed ) {
+                this->draw();
+                ch = this->poll();
+                continue;
+            }
+
             if ( cur != conPanel ) {  // alt input?
                 if ( ch == KEY_UP ) {
-                    cur->scrollUp();
+                    if ( mainStack && cur == mainStack && mainPanel )
+                        mainPanel->scrollUp();
+                    else
+                        cur->scrollUp();
                 } else if ( ch == KEY_DOWN ) {
-                    cur->scrollDown();
+                    if ( mainStack && cur == mainStack && mainPanel )
+                        mainPanel->scrollDown();
+                    else
+                        cur->scrollDown();
+                } else if ( mainStack && cur == mainStack ) {
+                    if ( ch == 'n' ) {
+                        mainPanel = mainStack->createPanel();
+                        if ( mainPanel ) {
+                            mainPanel->enableScroll(true);
+                            mainPanel->setMaxLines(500);
+                            mainPanel->addText("-- created new panel --");
+                            refreshMainTitles();
+                        }
+                    } else if ( ch == 'k' ) {
+                        if ( mainStack->killCurrentPanel() ) {
+                            mainPanel = mainStack->currentPanel();
+                            refreshMainTitles();
+                        }
+                    } else if ( ch == KEY_RIGHT || ch == '\t' ) {
+                        mainPanel = mainStack->nextPanel();
+                        refreshMainTitles();
+                    } else if ( ch == KEY_LEFT ) {
+                        mainPanel = mainStack->prevPanel();
+                        refreshMainTitles();
+                    }
                 }
             } else if ( echo ) {
                 // switch for asciionly? - if ( ch >= 32 && ch < 128 )
@@ -246,6 +316,33 @@ TestHexApp::run()
             alarm = true;
         } else if ( cmd.compare("/clear") == 0 ) {
             mainPanel->clear();
+        } else if ( cmd.compare("/new") == 0 || cmd.compare("/newpanel") == 0 ) {
+            if ( mainStack ) {
+                mainPanel = mainStack->createPanel();
+                if ( mainPanel ) {
+                    mainPanel->enableScroll(true);
+                    mainPanel->setMaxLines(500);
+                    mainPanel->addText("-- created new panel --");
+                    refreshMainTitles();
+                }
+            }
+        } else if ( cmd.compare("/next") == 0 ) {
+            if ( mainStack ) {
+                mainPanel = mainStack->nextPanel();
+                refreshMainTitles();
+            }
+        } else if ( cmd.compare("/prev") == 0 ) {
+            if ( mainStack ) {
+                mainPanel = mainStack->prevPanel();
+                refreshMainTitles();
+            }
+        } else if ( cmd.compare("/kill") == 0 ) {
+            if ( mainStack ) {
+                if ( mainStack->killCurrentPanel() ) {
+                    mainPanel = mainStack->currentPanel();
+                    refreshMainTitles();
+                }
+            }
         } else if ( cmd.compare("/bomb") == 0 ) {
             this->bomb();
         } else if ( cmd.compare("/echo") == 0 ) {

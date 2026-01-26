@@ -30,7 +30,7 @@
 namespace hexes {
 
 LineOutputHandler::LineOutputHandler ( bool newline )
-    : _newline(newline)
+  : _newline(newline)
 {}
 
 int
