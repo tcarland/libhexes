@@ -208,6 +208,9 @@ class HexPanel {
 
     bool                scrollable()   const;
 
+    std::string         createDialog ( const std::string & title,
+                                       const std::string & dialogText );
+
   protected:
 
     void                initPanel();
