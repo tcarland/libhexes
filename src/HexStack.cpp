@@ -80,6 +80,9 @@ HexStack::~HexStack()
 }
 
 
+/** Virtual method to ensure the current panel in the stack is valid, prior
+  * to running redraw on the current panel.
+ **/
 int
 HexStack::redraw()
 {
@@ -89,6 +92,7 @@ HexStack::redraw()
     return _curPanel->redraw();
 }
 
+/** Runs Panel::poll() on the current panel in the stack. */
 int
 HexStack::poll()
 {
@@ -98,6 +102,7 @@ HexStack::poll()
     return _curPanel->poll();
 }
 
+/** Runs resize for each panel in the stack */
 void
 HexStack:: resize ( int height, int width )
 {
@@ -112,7 +117,9 @@ HexStack:: resize ( int height, int width )
     return;
 }
 
-
+/** Creates a new panel in the stack and makes it current.
+  * If title is empty, an auto title is assigned.
+ **/
 HexPanel*
 HexStack::createPanel ( const std::string & title )
 {
@@ -161,8 +168,11 @@ HexStack::createPanel ( const std::string & title )
 }
 
 
+/** Destroys the current panel in the stack and switches to another.
+  * If the stack has only one panel, it will be replaced with a fresh panel.
+ **/
 bool
-HexStack::killCurrentPanel()
+HexStack::removeCurrentPanel()
 {
     if ( _stack.empty() || _curPanel == NULL )
         return false;
@@ -173,13 +183,13 @@ HexStack::killCurrentPanel()
     _curPanel->unsetFocus();
     _curPanel->hide();
 
-    // Remove and destroy current panel.
     HexPanel * victim = _curPanel;
     _stack.erase(_stack.begin() + (long) _curIndex);
     delete victim;
 
     // Ensure at least one panel exists.
-    if ( _stack.empty() ) {
+    if ( _stack.empty() ) 
+    {
         this->createPanel();
         if ( _curPanel ) {
             if ( wasFocused )
@@ -190,20 +200,19 @@ HexStack::killCurrentPanel()
         return true;
     }
 
-    // Clamp new index.
     if ( oldIndex >= _stack.size() )
         _curIndex = _stack.size() - 1;
     else
         _curIndex = oldIndex;
 
-    // Re-index panel IDs for focus cycling/debug.
     for ( size_t i = 0; i < _stack.size(); ++i ) {
         if ( _stack.at(i) )
             _stack.at(i)->setPanelId(i);
     }
 
     _curPanel = _stack.at(_curIndex);
-    if ( _curPanel ) {
+    if ( _curPanel ) 
+    {
         _curPanel->show();
         if ( wasFocused )
             _curPanel->setFocus();
@@ -215,6 +224,7 @@ HexStack::killCurrentPanel()
 }
 
 
+/** Switches the current panel to the next/previous panel in the stack. */
 HexPanel*
 HexStack::nextPanel()
 {
@@ -280,6 +290,7 @@ HexStack::prevPanel()
 }
 
 
+/** Returns the current active panel (may be NULL if none exist). */
 HexPanel*
 HexStack::currentPanel() const
 {
@@ -287,6 +298,7 @@ HexStack::currentPanel() const
 }
 
 
+/** Returns the number of panels in the stack. */
 size_t
 HexStack::panelCount() const
 {
@@ -294,6 +306,7 @@ HexStack::panelCount() const
 }
 
 
+/** Returns the panel at the given index or NULL if out of range. */
 HexPanel*
 HexStack::panelAt ( size_t index ) const
 {
@@ -303,6 +316,7 @@ HexStack::panelAt ( size_t index ) const
 }
 
 
+/** Sets the current panel by index; returns false if out of range. */
 bool
 HexStack::setCurrentIndex ( size_t index )
 {
@@ -339,6 +353,7 @@ HexStack::currentIndex() const
 }
 
 
+/** Applies this stack's current text/border colors to all child panels. */
 void
 HexStack::syncPanelColors()
 {

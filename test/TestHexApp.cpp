@@ -59,12 +59,12 @@ TestHexApp::resize()
     statPanel->addText(res.str());
 
     res.seekp(std::ios::beg);
-    res << "statPanel: " << _statheight << ", " << wd << ", " 
+    res << "statPanel: " << _statheight << ", " << wd << ", "
         << statstarty << ", 0";
     statPanel->addText(res.str());
 
     res.seekp(std::ios::beg);
-    res << "conPanel: " << _conheight << ", " << wd << ", " 
+    res << "conPanel: " << _conheight << ", " << wd << ", "
         << constarty << ", 0";
     statPanel->addText(res.str());
 }
@@ -82,6 +82,7 @@ TestHexApp::help()
     mainPanel->addText("  /next  - switch to next main panel");
     mainPanel->addText("  /prev  - switch to previous main panel");
     mainPanel->addText("  /intro - show intro dialog window");
+    mainPanel->addText("  /dialog - test the createDialog() method");
     mainPanel->addText("  /echo  - toggle the display of character input");
     mainPanel->addText("  /quit  - exits the app.");
     mainPanel->addText(" ");
@@ -194,7 +195,7 @@ TestHexApp::run()
     top.append(LIBHEXES_VERSION);
     this->print(0, 1, top, HEX_RED, HEX_BOLD);
     this->setFocus(conPanel);
-    
+
     cinput = (LineInputHandler*) conPanel->getInputHandler();
 
     std::string  cmd, prompt;
@@ -225,7 +226,7 @@ TestHexApp::run()
 
     HexPanel * cur = this->getPanel();
 
-    while ( ! alarm ) 
+    while ( ! alarm )
     {
         bool wcmd = false;
         this->draw();
@@ -233,7 +234,7 @@ TestHexApp::run()
         cmd = "";
         ch  = this->poll();
 
-        while ( ! cinput->isReady() ) 
+        while ( ! cinput->isReady() )
         {
             std::ostringstream  ostr;
             ostr << "ch = " << ch << "   '" << (char) ch << "'";
@@ -284,7 +285,7 @@ TestHexApp::run()
                             refreshMainTitles();
                         }
                     } else if ( ch == 'k' ) {
-                        if ( mainStack->killCurrentPanel() ) {
+                        if ( mainStack->removeCurrentPanel() ) {
                             mainPanel = mainStack->currentPanel();
                             refreshMainTitles();
                         }
@@ -338,7 +339,7 @@ TestHexApp::run()
             }
         } else if ( cmd.compare("/kill") == 0 ) {
             if ( mainStack ) {
-                if ( mainStack->killCurrentPanel() ) {
+                if ( mainStack->removeCurrentPanel() ) {
                     mainPanel = mainStack->currentPanel();
                     refreshMainTitles();
                 }
@@ -355,6 +356,18 @@ TestHexApp::run()
             }
         } else if ( cmd.compare("/intro") == 0 ) {
             this->showIntro();
+        } else if ( cmd.compare("/dialog") == 0 ) {
+            std::string dialogText = "This is a test of the createDialog() method.\n"
+                                     "It automatically calculates appropriate dimensions\n"
+                                     "based on the dialog text and parent panel size.\n"
+                                     "Please enter your name:";
+            std::string result = mainPanel->createDialog("User Input", dialogText);
+            if ( ! result.empty() ) {
+                mainPanel->addText("You entered: " + result);
+                statPanel->addText("Dialog result: " + result);
+            } else {
+                mainPanel->addText("No input provided.");
+            }
         } else if ( cmd.compare("/help") == 0 || cmd.compare("/?") == 0 ) {
             this->help();
         }

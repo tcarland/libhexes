@@ -25,6 +25,7 @@
 
 #include "HexApp.h"
 #include "HexPanel.h"
+#include "HexDialog.h"
 #include "HexWindow.h"
 #include "HexOutputInterface.hpp"
 #include "HexInputInterface.hpp"
@@ -816,6 +817,136 @@ HexPanel::initPanel()
     this->timeout(-1); // blocking input
 
     return;
+}
+
+//----------------------------------------------------------------//
+
+/**  Creates and displays a dialog with automatic sizing based on
+  *  the dialog text and parent panel dimensions. The dialog text
+  *  will be wrapped if necessary to fit within the parent panel.
+  *  
+  *  @param title The title of the dialog window
+  *  @param dialogText The text content to display in the dialog
+  *  @return The user input result from the dialog
+ **/
+std::string
+HexPanel::createDialog ( const std::string & title,
+                         const std::string & dialogText )
+{
+    // Get parent panel dimensions (subtract borders if present)
+    int maxWidth  = this->width();
+    int maxHeight = this->height();
+    
+    if ( this->getDrawBorder() ) {
+        maxWidth  -= 4;  // Leave margin for borders (2 on each side)
+        maxHeight -= 4;
+    }
+
+    // Ensure minimum dialog size
+    if ( maxWidth < 10 )
+        maxWidth = 10;
+    if ( maxHeight < 5 )
+        maxHeight = 5;
+
+    // Split dialog text into lines if it contains newlines
+    std::vector<std::string> lines;
+    HexString::Split(dialogText, '\n', std::back_inserter(lines));
+
+    // Calculate width and height, wrapping text if needed
+    std::vector<std::string> wrappedLines;
+    int dialogWidth = title.length() + 2;  // Start with title width
+
+    for ( size_t i = 0; i < lines.size(); ++i )
+    {
+        std::string line = lines[i];
+        
+        // Wrap line if it exceeds maxWidth
+        while ( line.length() > (size_t)maxWidth )
+        {
+            // Find a good break point (space or punctuation)
+            size_t breakPoint = maxWidth;
+            size_t lastSpace = line.rfind(' ', maxWidth);
+            
+            if ( lastSpace != std::string::npos && lastSpace > (size_t)(maxWidth / 2) ) {
+                breakPoint = lastSpace;
+            }
+            
+            wrappedLines.push_back(line.substr(0, breakPoint));
+            line = line.substr(breakPoint);
+            
+            // Track maximum width
+            if ( breakPoint > (size_t)dialogWidth )
+                dialogWidth = breakPoint;
+        }
+        
+        // Add remaining portion of line
+        if ( ! line.empty() ) {
+            wrappedLines.push_back(line);
+            if ( line.length() > (size_t)dialogWidth )
+                dialogWidth = line.length();
+        }
+    }
+
+    int dialogHeight = wrappedLines.size();
+
+    // Ensure dialog dimensions don't exceed parent
+    if ( dialogWidth > maxWidth )
+        dialogWidth = maxWidth;
+    if ( dialogHeight > maxHeight - 2 )  // Reserve space for input line
+        dialogHeight = maxHeight - 2;
+
+    // Calculate max input characters based on available width
+    int maxInput = dialogWidth - 2;  // Account for borders
+    if ( maxInput < 1 )
+        maxInput = 1;
+    if ( maxInput > 255 )
+        maxInput = 255;
+
+    // Add borders to dimensions
+    dialogWidth  += 2;
+    dialogHeight += 3;  // Extra line for input
+
+    // Calculate centered position relative to parent
+    int startY = this->startY() + ((this->height() - dialogHeight) / 2);
+    int startX = this->startX() + ((this->width() - dialogWidth) / 2);
+
+    // Ensure dialog stays within screen bounds
+    if ( startY < 0 )
+        startY = 0;
+    if ( startX < 0 )
+        startX = 0;
+
+    // Create the dialog with calculated dimensions
+    HexString dialogContent;
+    for ( size_t i = 0; i < wrappedLines.size(); ++i ) {
+        if ( i > 0 )
+            dialogContent.append("\n");
+        dialogContent.append(wrappedLines[i]);
+    }
+
+    // Set dialog text to cyan and bold
+    dialogContent.color      = HEX_CYAN;
+    dialogContent.attributes = HEX_BOLD;
+
+    HexDialog * dialog = new HexDialog(title, dialogContent, 
+                                       dialogHeight, dialogWidth,
+                                       startY, startX);
+    
+    dialog->setCharOnly(false);
+    dialog->echoResults(true);
+    dialog->setMaxInput(maxInput);
+    dialog->setTextColor(HEX_CYAN);
+    dialog->setBorderColor(HEX_GREEN);
+
+    dialog->showDialog();
+    std::string result = dialog->getResult();
+
+    delete dialog;
+
+    // Refresh parent panel
+    this->redraw();
+
+    return result;
 }
 
 } // namespace
