@@ -59,12 +59,12 @@ TestHexApp::resize()
     statPanel->addText(res.str());
 
     res.seekp(std::ios::beg);
-    res << "statPanel: " << _statheight << ", " << wd << ", " 
+    res << "statPanel: " << _statheight << ", " << wd << ", "
         << statstarty << ", 0";
     statPanel->addText(res.str());
 
     res.seekp(std::ios::beg);
-    res << "conPanel: " << _conheight << ", " << wd << ", " 
+    res << "conPanel: " << _conheight << ", " << wd << ", "
         << constarty << ", 0";
     statPanel->addText(res.str());
 }
@@ -195,7 +195,7 @@ TestHexApp::run()
     top.append(LIBHEXES_VERSION);
     this->print(0, 1, top, HEX_RED, HEX_BOLD);
     this->setFocus(conPanel);
-    
+
     cinput = (LineInputHandler*) conPanel->getInputHandler();
 
     std::string  cmd, prompt;
@@ -226,7 +226,7 @@ TestHexApp::run()
 
     HexPanel * cur = this->getPanel();
 
-    while ( ! alarm ) 
+    while ( ! alarm )
     {
         bool wcmd = false;
         this->draw();
@@ -234,7 +234,7 @@ TestHexApp::run()
         cmd = "";
         ch  = this->poll();
 
-        while ( ! cinput->isReady() ) 
+        while ( ! cinput->isReady() )
         {
             std::ostringstream  ostr;
             ostr << "ch = " << ch << "   '" << (char) ch << "'";
@@ -285,7 +285,7 @@ TestHexApp::run()
                             refreshMainTitles();
                         }
                     } else if ( ch == 'k' ) {
-                        if ( mainStack->killCurrentPanel() ) {
+                        if ( mainStack->removeCurrentPanel() ) {
                             mainPanel = mainStack->currentPanel();
                             refreshMainTitles();
                         }
@@ -339,7 +339,7 @@ TestHexApp::run()
             }
         } else if ( cmd.compare("/kill") == 0 ) {
             if ( mainStack ) {
-                if ( mainStack->killCurrentPanel() ) {
+                if ( mainStack->removeCurrentPanel() ) {
                     mainPanel = mainStack->currentPanel();
                     refreshMainTitles();
                 }
