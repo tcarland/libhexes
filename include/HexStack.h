@@ -31,8 +31,8 @@
 namespace hexes {
 
 
-/** A specialized widget that is itself a HexPanel, but also 
-  * can contain a number of additional HexPanel instances in 
+/** A specialized widget that is itself a HexPanel, but also
+  * can contain a number of additional HexPanel instances in
   * a stack under the current panel. A stack of panes.
  **/
 class HexStack : public HexPanel {
@@ -46,45 +46,28 @@ class HexStack : public HexPanel {
 
     virtual ~HexStack();
 
-    
+
     virtual int  redraw();
     virtual int  poll();
     virtual void resize  ( int height, int width );
 
 
-    /** Creates a new panel in the stack and makes it current.
-      * If title is empty, an auto title is assigned.
-      */
-    HexPanel* createPanel ( const std::string & title = "" );
+    HexPanel*   createPanel ( const std::string & title = "" );
+    HexPanel*   currentPanel() const;
+    HexPanel*   nextPanel();
+    HexPanel*   prevPanel();
+    bool        removeCurrentPanel();
 
-    /** Switches the current panel to the next/previous panel in the stack. */
-    HexPanel* nextPanel();
-    HexPanel* prevPanel();
+    HexPanel*   panelAt ( size_t index ) const;
+    size_t      panelCount() const;
 
-    /** Destroys the current panel in the stack and switches to another.
-      * If the stack has only one panel, it will be replaced with a fresh panel.
-      */
-    bool killCurrentPanel();
+    bool        setCurrentIndex ( size_t index );
+    size_t      currentIndex() const;
 
-    /** Returns the current active panel (may be NULL if none exist). */
-    HexPanel* currentPanel() const;
+    void        syncPanelColors();
 
-    /** Returns the number of panels in the stack. */
-    size_t panelCount() const;
+    void        setPanelFactory ( HexPanelFactory * factory );
 
-    /** Returns the panel at the given index or NULL if out of range. */
-    HexPanel* panelAt ( size_t index ) const;
-
-
-    /** Sets the current panel by index; returns false if out of range. */
-    bool setCurrentIndex ( size_t index );
-    size_t currentIndex() const;
-
-    /** Applies this stack's current text/border colors to all child panels. */
-    void syncPanelColors();
-
-
-    void setPanelFactory ( HexPanelFactory * factory );
 
   protected:
 
