@@ -32,7 +32,7 @@ namespace hexes {
 
 
 HexWindow::HexWindow()
-  : _win(NULL),
+  : _win(nullptr),
     _height(5),
     _width(10),
     _starty(0),
@@ -44,7 +44,7 @@ HexWindow::HexWindow()
 }
 
 HexWindow::HexWindow ( int height, int width, bool border )
-  : _win(NULL),
+  : _win(nullptr),
     _height(height), 
     _width(width),
     _starty(0),
@@ -58,7 +58,7 @@ HexWindow::HexWindow ( int height, int width, bool border )
 HexWindow::HexWindow ( int height, int width,
                        int starty, int startx,
                        bool border )
-  : _win(NULL),
+  : _win(nullptr),
     _height(height), 
     _width(width),
     _starty(starty), 

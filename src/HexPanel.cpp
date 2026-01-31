@@ -42,16 +42,16 @@ HexPanelFactory::HexPanelFactory ( HexPanel * parent )
 HexPanel*
 HexPanelFactory::operator() ( int panelId, const std::string & title )
 {
-    return NULL;
+    return nullptr;
 }
 
 //----------------------------------------------------------------//
 
 HexPanel::HexPanel ( const std::string & title )
   : _hwin(new HexWindow()),
-    _panel(NULL),
+    _panel(nullptr),
     _output(new LineOutputHandler()),
-    _input(NULL),
+    _input(nullptr),
     _title(title),
     _panelId(0),
     _selected(0),
@@ -74,9 +74,9 @@ HexPanel::HexPanel ( const std::string & title,
                      int   starty, int   startx )
   :
     _hwin(new HexWindow(height, width, starty, startx, true)),
-    _panel(NULL),
+    _panel(nullptr),
     _output(new LineOutputHandler()),
-    _input(NULL),
+    _input(nullptr),
     _title(title),
     _panelId(0),
     _selected(0),
@@ -121,7 +121,7 @@ HexPanel::poll()
     if ( ch == ERR )
         return ch;
 
-    if ( _input == NULL )
+    if ( _input == nullptr )
         return ch;
 
     return _input->handleInput(this, ch);
@@ -135,7 +135,7 @@ HexPanel::redraw()
 
     _hwin->erase();
 
-    if ( _output != NULL )
+    if ( _output != nullptr )
         r = _output->handleOutput(this);
 
     if ( _drawBorder) {
@@ -622,7 +622,7 @@ HexPanel::getUserData()
 {
     if ( _panel )
         return ::panel_userptr(_panel);
-    return NULL;
+    return nullptr;
 }
 
 //----------------------------------------------------------------//
@@ -632,7 +632,7 @@ HexPanel::enableScroll ( bool scroll, int lines )
 {
     this->_scrollable = scroll;
 
-    if ( this->_hwin == NULL )
+    if ( this->_hwin == nullptr )
         return false;
 
     if ( this->_scrollable )
@@ -806,7 +806,7 @@ HexPanel::moveWindow ( int starty, int startx )
 void
 HexPanel::initPanel()
 {
-    if ( this->_hwin == NULL )
+    if ( this->_hwin == nullptr )
         return;  // TODO: Throw!
 
     this->_panel = new_panel(this->_hwin->_win);

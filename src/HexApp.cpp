@@ -41,7 +41,7 @@ bool HexApp::_NCURSES_INIT = false;
   * ncurses library.
  **/
 HexApp::HexApp()
-  : _curPanel(NULL),
+  : _curPanel(nullptr),
     _colorIndex(0),
     _txtColor(0),
     _bdrColor(0),
@@ -99,7 +99,7 @@ HexApp::draw()
     {
         HexPanel * p = pIter->second;
 
-        if ( p == NULL ) {
+        if ( p == nullptr ) {
             removes.push_back(pIter->first);
             continue;
         }
@@ -146,7 +146,7 @@ HexApp::poll()
 {
     int r = ERR;
     
-    if ( _curPanel != NULL )
+    if ( _curPanel != nullptr )
         r = _curPanel->poll();
 
     if ( r == KEY_RESIZE && this->resized() )
@@ -173,7 +173,7 @@ HexApp::poll()
 void
 HexApp::timeout ( int delay_ms )
 {
-    if ( _curPanel != NULL )
+    if ( _curPanel != nullptr )
         _curPanel->timeout(delay_ms);
 }
 
@@ -184,7 +184,7 @@ HexApp::timeout ( int delay_ms )
 void
 HexApp::setFocus ( HexPanel * panel )
 {
-    if ( panel == NULL )
+    if ( panel == nullptr )
         return;
 
     if ( _curPanel ) {
@@ -211,10 +211,10 @@ HexApp::setFocus ( HexPanel * panel )
 HexPanel*
 HexApp::setFocusNext()
 {
-    if ( _curPanel == NULL )
+    if ( _curPanel == nullptr )
     {
         if ( _pstack.empty() )
-            return NULL;
+            return nullptr;
         _curPanel = _pstack.front();
     }
 
@@ -233,10 +233,10 @@ HexApp::setFocusNext()
 HexPanel*
 HexApp::setFocusPrev()
 {
-    if ( _curPanel == NULL )
+    if ( _curPanel == nullptr )
     {
         if ( _pstack.empty() )
-            return NULL;
+            return nullptr;
         _curPanel = _pstack.front();
     }
 
@@ -269,7 +269,7 @@ HexApp::createPanel ( const std::string & title,
                       int height, int width, 
                       int starty, int startx )
 {
-    HexPanel * p = NULL;
+    HexPanel * p = nullptr;
     PanelMap::iterator pIter;
 
     if ( (pIter = _panels.find(title)) != _panels.end() )
@@ -285,7 +285,7 @@ HexApp::createPanel ( const std::string & title,
     _panels[title] = p;
     _pstack.push_back(p);
 
-    if ( _curPanel == NULL )
+    if ( _curPanel == nullptr )
         this->setFocus(p);
 
     return p;
@@ -305,7 +305,7 @@ HexApp::createPanel ( const std::string & title,
 bool
 HexApp::addPanel ( HexPanel * panel )
 {
-    if ( panel == NULL )
+    if ( panel == nullptr )
         return false;
 
     PanelMap::iterator pIter;
@@ -326,14 +326,14 @@ HexApp::addPanel ( HexPanel * panel )
     _panels[panel->getPanelName()] = panel;
     _pstack.push_back(panel);
 
-    if ( _curPanel == NULL )
+    if ( _curPanel == nullptr )
         this->setFocus(panel);
 
     return true;
 }
 
 /**  Returns the HexPanel pointer for the given title, or
-  *  NULL if no such title exists. If no title is given,
+  *  nullptr if no such title exists. If no title is given,
   *  the current focused panel is returned.
   *
   *  @param title is the window title to be retrieved or
@@ -342,10 +342,10 @@ HexApp::addPanel ( HexPanel * panel )
 HexPanel*
 HexApp::getPanel ( const std::string & title )
 {
-    HexPanel * panel = NULL;
+    HexPanel * panel = nullptr;
     PanelMap::iterator  pIter;
 
-    if ( title.empty() && _curPanel != NULL )
+    if ( title.empty() && _curPanel != nullptr )
         return _curPanel;
 
     pIter = _panels.find(title);
@@ -361,14 +361,14 @@ HexApp::getPanel ( const std::string & title )
   *  corresponding HexPanel object.  HexApp will no
   *  longer track the panel object and it will not be
   *  destroyed by the HexApp instance.
-  *  Returns NULL if no such panel exists.
+  *  Returns nullptr if no such panel exists.
   *
   *  @param  title is the window title to be removed.
  **/
 HexPanel*
 HexApp::removePanel ( const std::string & title )
 {
-    HexPanel * panel = NULL;
+    HexPanel * panel = nullptr;
     PanelMap::iterator pIter;
     int id;
 
@@ -402,7 +402,7 @@ HexApp::removePanel ( const std::string & title )
 bool
 HexApp::destroyPanel ( const std::string & title )
 {
-    HexPanel * panel = NULL;
+    HexPanel * panel = nullptr;
     int id;
 
     PanelMap::iterator   pIter;
@@ -439,12 +439,12 @@ HexApp::destroyPanels()
 
     for ( pIter = _panels.begin(); pIter != _panels.end(); ++pIter )
     {
-        if ( pIter->second != NULL )
+        if ( pIter->second != nullptr )
             delete pIter->second;
     }
     _panels.clear();
     _pstack.clear();
-    _curPanel = NULL;
+    _curPanel = nullptr;
 
     return;
 }
