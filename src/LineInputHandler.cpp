@@ -70,10 +70,10 @@ LineInputHandler::handleInput ( HexPanel * p, int ch )
             TextList    & txtlist = p->getTextList();
             HexString   & curline = txtlist.back();
             curline.erase(curline.length() - 1);
-	    _line.erase(_line.length() - 1);
+	        _line.erase(_line.length() - 1);
 
-	    int x = p->curX();
-	    p->move(p->curY(), x-1);
+	        int x = p->curX();
+	        p->move(p->curY(), x-1);
         }
     }
     else if ( ch == KEY_UP )

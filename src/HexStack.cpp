@@ -32,7 +32,7 @@ namespace hexes {
 
 HexStack::HexStack ( const std::string & title )
   : HexPanel(title),
-    _curPanel(NULL),
+    _curPanel(nullptr),
     _factory(new HexPanelFactory(this)),
     _curIndex(0),
     _nextPanelId(0),
@@ -50,7 +50,7 @@ HexStack::HexStack ( const std::string & title,
                      int   height, int   width,
                      int   starty, int   startx )
   : HexPanel(title, height, width, starty, startx),
-    _curPanel(NULL),
+    _curPanel(nullptr),
     _factory(new HexPanelFactory(this)),
     _curIndex(0),
     _nextPanelId(0),
@@ -73,7 +73,7 @@ HexStack::~HexStack()
             delete *it;
     }
     _stack.clear();
-    _curPanel = NULL;
+    _curPanel = nullptr;
 
     if ( _factory )
         delete _factory;
@@ -86,7 +86,7 @@ HexStack::~HexStack()
 int
 HexStack::redraw()
 {
-    if ( _curPanel == NULL )
+    if ( _curPanel == nullptr )
         return 1;
 
     return _curPanel->redraw();
@@ -96,7 +96,7 @@ HexStack::redraw()
 int
 HexStack::poll()
 {
-    if ( _curPanel == NULL )
+    if ( _curPanel == nullptr )
         return ERR;
 
     return _curPanel->poll();
@@ -131,13 +131,13 @@ HexStack::createPanel ( const std::string & title )
         useTitle = ostr.str();
     }
 
-    HexPanel * panel = NULL;
+    HexPanel * panel = nullptr;
 
     if ( _factory )
         panel = (*_factory)(_nextPanelId, useTitle);
 
     // Default factory creates a basic HexPanel sized to this stack.
-    if ( panel == NULL )
+    if ( panel == nullptr )
         panel = new HexPanel(useTitle, this->height(), this->width(), this->startY(), this->startX());
 
     panel->setPanelId(_stack.size());
@@ -174,7 +174,7 @@ HexStack::createPanel ( const std::string & title )
 bool
 HexStack::removeCurrentPanel()
 {
-    if ( _stack.empty() || _curPanel == NULL )
+    if ( _stack.empty() || _curPanel == nullptr )
         return false;
 
     bool wasFocused = _curPanel->hasFocus();
@@ -229,7 +229,7 @@ HexPanel*
 HexStack::nextPanel()
 {
     if ( _stack.empty() )
-        return NULL;
+        return nullptr;
 
     bool wasFocused = false;
     if ( _curPanel ) {
@@ -261,7 +261,7 @@ HexPanel*
 HexStack::prevPanel()
 {
     if ( _stack.empty() )
-        return NULL;
+        return nullptr;
 
     bool wasFocused = false;
     if ( _curPanel ) {
@@ -290,7 +290,7 @@ HexStack::prevPanel()
 }
 
 
-/** Returns the current active panel (may be NULL if none exist). */
+/** Returns the current active panel (may be nullptr if none exist). */
 HexPanel*
 HexStack::currentPanel() const
 {
@@ -306,12 +306,12 @@ HexStack::panelCount() const
 }
 
 
-/** Returns the panel at the given index or NULL if out of range. */
+/** Returns the panel at the given index or nullptr if out of range. */
 HexPanel*
 HexStack::panelAt ( size_t index ) const
 {
     if ( index >= _stack.size() )
-        return NULL;
+        return nullptr;
     return _stack.at(index);
 }
 
@@ -359,7 +359,7 @@ HexStack::syncPanelColors()
 {
     for ( PanelStack::iterator it = _stack.begin(); it != _stack.end(); ++it )
     {
-        if ( *it == NULL )
+        if ( *it == nullptr )
             continue;
         (*it)->setTextColor(this->getTextColor());
         (*it)->setBorderColor(this->getBorderColor());

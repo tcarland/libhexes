@@ -59,7 +59,7 @@ extern "C" {
 
 namespace hexes {
 
-#define LIBHEXES_VERSION  "v0.4.1"
+#define LIBHEXES_VERSION  "v0.4.3"
 
 class HexPanel;
 

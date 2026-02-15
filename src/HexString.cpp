@@ -35,6 +35,7 @@ HexString::HexString()
     wrap(true)
 {}
 
+
 HexString::HexString ( const std::string & str_, 
                        bool  wrap_ )
   : color(0),
