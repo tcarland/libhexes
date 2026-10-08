@@ -33,14 +33,14 @@ all: lib test
 
 lib: arlib
 arlib: lib/libhexes.a
-solib: libhexes.so.0.4.3
+solib: libhexes.so.0.4.4
 
 lib/libhexes.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libhexes.so.0.4.3: $(OBJS)
+libhexes.so.0.4.4: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) $@ lib/libhexes.so )
 	$(make-so-rule)
